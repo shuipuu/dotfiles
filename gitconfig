@@ -1,0 +1,19 @@
+[core]
+    editor = vim
+    # Unicode
+    precomposeunicode = true
+    quotepath = true
+[push]
+    # simple,matching,upstream,current
+    default = simple
+[color]
+    ui = auto
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+[diff]
+    patience = true
+[core]
+  excludesfile = /Users/w-aoto/.gitignore_global
