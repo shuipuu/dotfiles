@@ -12,6 +12,8 @@ SAVEHIST=100000
 setopt extended_history
 setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data 
+setopt hist_verify
+setopt hist_expand
 ## 全てのコマンド履歴を表示
 function history-all { history 1 }
 #search
@@ -50,9 +52,14 @@ if [ -n "${REMOTEHOST}${SSH_CONNECTION}" ]; then
 fi
 
 # lsのカラー
-export LSCOLORS=hxFxCxdxBxegedabagacad
-export LS_COLORS='di=01;37:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-export ZLS_COLORS=$LS_COLORS
+DIRCOLORS_PATH=~/dotfiles/dircolors-solarized/dircolors.256dark
+if [ -f DIRCOLORS_PATH ]; then
+    if type dircolors > /dev/null 2>&1; then
+        eval $(dircolors DIRCOLORS_PATH)
+    elif type gdircolors > /dev/null 2>&1; then
+        eval $(gdircolors DIRCOLORS_PATH)
+    fi
+fi
 
 # 一般
 setopt auto_cd
@@ -82,6 +89,8 @@ alias view='vim -R'
 ## jman設定
 alias man='env LANG=C man'
 alias jman='env LANG=ja_JP.UTF-8 man -M /usr/local/share/man/'
+## docker
+alias docker-run="docker run -it"
 
 # path
 export PATH=$HOME/.pyenv/bin:$HOME/.pyenv/shims:$HOME/.rbenv/bin:$HOME/.rbenv/shims:/usr/local/bin:/usr/local/sbin:/usr/texbin:$PATH
@@ -136,6 +145,17 @@ fi
 # タイトル
 echo -ne "\033]0;`hostname`\007"
 
-# tmux の起動
-[[ -z "$TMUX" && -z "$WINDOW" && ! -z "$PS1" ]]  && tmux
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
 
+# tmux の起動
+#[[ -z "$TMUX" && -z "$WINDOW" && ! -z "$PS1" ]]  && tmux

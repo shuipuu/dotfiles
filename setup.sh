@@ -16,6 +16,12 @@ mkdir -p zsh/zsh_plugin
 git clone https://github.com/zsh-users/zaw.git zsh/zsh_plugin/zaw
 git clone https://github.com/zsh-users/zsh-completions.git zsh/zsh_plugin/zsh-completions
 
+# dircolors
+git clone https://github.com/seebi/dircolors-solarized.git
+
+# iterm2's scheme
+curl -o JetBrains_Darcula.itermcolors https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/JetBrains%20Darcula.itermcolors
+
 ln -s ~/dotfiles/ctags ~/.ctags
 ln -s ~/dotfiles/gemrc ~/.gemrc
 ln -s ~/dotfiles/gitconfig ~/.gitconfig

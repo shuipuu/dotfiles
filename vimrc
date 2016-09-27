@@ -24,6 +24,7 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-endwise'
+"NeoBundle 'chase/vim-ansible-yaml'
 
 call neobundle#end()
 filetype plugin indent on     " required!
@@ -105,7 +106,7 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -151,7 +152,7 @@ nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<
 "----------------------------------------------------
 " 文字コードの設定
 set encoding=utf-8
-set fileencodings=ucs-bom,ISO-2022-JP,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+set fileencodings=utf-8,ucs-bom,ISO-2022-JP,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 "エラー時の音の抑制
@@ -201,7 +202,7 @@ set matchtime=0
 " シンタックスハイライトを[有効]にする
 syntax on
 " カラースキーム
-colorscheme ron
+colorscheme obsidian
 " コメント文の色を変更
 highlight Comment ctermfg=DarkCyan
 " コマンドライン補完を拡張モードにする
@@ -225,8 +226,6 @@ set showcmd
 set autoindent
 "smartindent
 set smartindent
-" タブを挿入するとき、代わりに空白を使う
-set expandtab
 " タブを明示的に表示
 set list
 set listchars=tab:>\ 
@@ -236,6 +235,8 @@ set tabstop=2
 set shiftwidth=2
 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set softtabstop=2
+" タブを挿入するとき、代わりに空白を使う
+set expandtab
 
 "----------------------------------------------------
 " その他
